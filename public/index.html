@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="scotchTodo">
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="gmaps.js"></script>
+  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript" src="controllers.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body ng-controller="mainController">
+   <div id="map">
+   </div>
+   <div id="sidebar">
+   		<div>
+
+		<!-- HEADER AND place COUNT -->
+		<div class="jumbotron text-left">
+			<h1>Places: <span class="label label-info">{{ places.length }}</span></h1>
+		</div>
+
+		<!-- place LIST -->
+		<div id="place-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE places IN $scope.places -->
+				<div class="checkbox" ng-repeat="place in places">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(place._id)"> {{ place.text }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE places -->
+		<div id="place-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-left">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW places -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+   </div>
+   <div class="col-lg-6">
+    <form class="navbar-form navbar-left" id="geocoding_form" role="search">
+      <a><span class="label label-default">I Want.travel</span> to</a>
+      <div class="form-group">
+        <input type="text" class="form-control" id="address" placeholder="Search" ng-model="placeData.text">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+</body>
+</html>
